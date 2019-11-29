@@ -1,8 +1,8 @@
 FROM python:3.7.4
 MAINTAINER Zheng zxyful@gmail.com
 
-LABEL Version="1.0" \
-      LastModifiedDate="2019-07-22"
+LABEL Version="2.0" \
+      LastModifiedDate="2019-11-29"
 
 ADD . /app/
 
