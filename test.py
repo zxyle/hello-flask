@@ -7,7 +7,7 @@
 
 import requests
 
-url = "http://127.0.0.1:5000/oss"
-data = {"bucket_name": "i-pro", "img_url": "https://www.baidu.com/img/bd_logo1.png"}
-resp = requests.post(url, data=data)
+url = "http://127.0.0.1:5000/upload"
+files = {'file': open("./heigui.jpg", 'rb')}
+resp = requests.post(url, files=files, data={"bucket_name": "zx-hotel"})
 print(resp.text)

@@ -31,22 +31,16 @@ class OSS:
 
         return oss2.Bucket(self.__auth, self.__endpoint, bucket_name)
 
-    def put(self, abspath, bucket_name="zx-test-oss"):
+    def put(self, filename, bytes_data, bucket_name="zx-test-oss"):
         """
         upload file
-        :param abspath:
+        :param filename:
+        :param bytes_data:
         :param bucket_name
         :return:
         """
-        if not self._exist(abspath):
-            raise FileNotFoundError
-
-        dirname = os.path.dirname(abspath)
-
-        filename = os.path.basename(abspath)
         bucket = self.get_bucket(bucket_name)
-
-        result = bucket.put_object_from_file(filename, abspath)
+        result = bucket.put_object(filename, bytes_data)
         return result.status
 
     def download(self, obj_name, bucket_name="zx-test-oss"):
@@ -84,8 +78,4 @@ class OSS:
 
 if __name__ == '__main__':
     o = OSS()
-    # print(o.put(r"./README.md", "i-dev"))
-    o.list_bucket()
-    # o.download("a.jpg")
-    # print(o.delete("BugCode_taskkill_1_1_2_8.exe"))
-    # o.delete("D:\Projects\BoardCAM\README.md")
+    print(o.put("bd_logo1.png", open("./bd_logo1.png", 'rb'), "zx-hotel"))
