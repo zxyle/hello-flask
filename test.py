@@ -7,7 +7,9 @@
 
 import requests
 
-url = "http://127.0.0.1:5000/upload"
-files = {'file': open("./heigui.jpg", 'rb')}
+url = "http://172.16.152.133:5000/upload"
+# url = "http://127.0.0.1:5000/upload"
+
+files = {'file': open("./a.jpg", 'rb')}
 resp = requests.post(url, files=files, data={"bucket_name": "zx-hotel"})
 print(resp.text)
