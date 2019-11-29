@@ -34,9 +34,9 @@ class OSS:
     def put(self, filename, bytes_data, bucket_name="zx-test-oss"):
         """
         upload file
-        :param filename:
-        :param bytes_data:
-        :param bucket_name
+        :param filename: 文件名
+        :param bytes_data: 二进制文件
+        :param bucket_name:
         :return:
         """
         bucket = self.get_bucket(bucket_name)
