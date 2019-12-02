@@ -14,7 +14,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # 注册蓝图
-app.register_blueprint(user_blue)
+app.register_blueprint(user_blue, url_prefix='/user')
 
 
 def allowed_file(filename):
