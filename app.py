@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Author: Zheng <zxyful@gmail.com>
+# Date: 2019/11/29
+# Desc:
+
 from urllib.parse import urljoin
 
 from flask import Flask, jsonify, render_template, request
