@@ -51,7 +51,7 @@ class OSS:
         bucket = self.get_bucket(bucket_name)
         bucket.get_object_to_file(obj_name, './' + obj_name)
 
-    def list_bucket(self, bucket_name="zx-test-oss"):
+    def list_objects(self, bucket_name="zx-test-oss"):
         """
         列出bucket所有文件名
         :param bucket_name:

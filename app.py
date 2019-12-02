@@ -1,6 +1,6 @@
 from urllib.parse import urljoin
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from werkzeug.utils import secure_filename
 
 from config import endpoint
@@ -21,7 +21,7 @@ def allowed_file(filename):
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method != 'POST':
-        return "use post method"
+        return render_template("upload.html")
 
     if 'file' not in request.files:
         return 'No file part'
