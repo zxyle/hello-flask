@@ -1,10 +1,11 @@
 from urllib.parse import urljoin
 
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
 from config import endpoint
 from oss import OSS
+from user import user_blue
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -12,10 +13,19 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+# 注册蓝图
+app.register_blueprint(user_blue)
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# 钩子函数
+@app.before_request
+def before_request():
+    print('before_request')
 
 
 @app.route('/upload', methods=['GET', 'POST'])
