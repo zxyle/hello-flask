@@ -11,10 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag spider_server:latest
     
     - name: Login Docker Hub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    
-    - name: Docker image push re
-      run: docker push my-image-name:$(date +%s)
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Docker image push registry
+      run: docker push spider_server:latest
