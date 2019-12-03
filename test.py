@@ -7,8 +7,8 @@
 
 import requests
 
-url = "http://172.16.152.133:5000/upload"
-# url = "http://127.0.0.1:5000/upload"
+url = "http://172.16.152.133:5000/oss/transfer"
+# url = "http://127.0.0.1:5000/oss/transfer"
 
 filename = "./uploads/demo.jpg"
 files = {'file': open(filename, 'rb')}
