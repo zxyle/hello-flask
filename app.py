@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
 # Date: 2019/11/29
-# Desc:
+# Desc: 主程序
 
 from urllib.parse import urljoin
 
@@ -28,10 +28,10 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# 钩子函数
-@app.before_request
-def before_request():
-    print('before_request')
+# # 钩子函数
+# @app.before_request
+# def before_request():
+#     print('before_request')
 
 
 @app.route('/upload', methods=['GET', 'POST'])
