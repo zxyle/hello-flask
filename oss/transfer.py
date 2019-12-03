@@ -22,9 +22,9 @@ def allowed_file(filename):
 
 
 @oss_blue.route('/transfer', methods=['GET', 'POST'])
-def upload_file():
+def transfer():
     if request.method != 'POST':
-        return render_template("upload.html")
+        return render_template("transfer.html")
 
     if 'file' not in request.files:
         return 'No file part'
