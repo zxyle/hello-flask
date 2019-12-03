@@ -21,3 +21,6 @@ RUN pip install --no-cache-dir --upgrade pip \
 EXPOSE 5000
 
 ENTRYPOINT gunicorn -c gunicorn.conf.py app:app
+
+# 使用命令
+# docker run -d -p 5000:5000 --restart=always registry.cn-hangzhou.aliyuncs.com/zxyle/spider_server
