@@ -14,7 +14,10 @@ jobs:
       run: docker build . --file Dockerfile --tag spider_server:latest
     
     - name: Login Docker Hub
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
+
+    - name: Docker tag
+      run: docker tag spider_server:latest registry.cn-hangzhou.aliyuncs.com/zxyle/spider_server:latest
 
     - name: Docker image push registry
-      run: docker push zxyle/spider_server:latest
+      run: docker push registry.cn-hangzhou.aliyuncs.com/zxyle/spider_server:latest
