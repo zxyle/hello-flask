@@ -13,4 +13,7 @@ def create_app():
     from .oss import oss_blue
     app.register_blueprint(oss_blue, url_prefix='/oss')
 
+    from .auth import auth_blue
+    app.register_blueprint(auth_blue)
+
     return app
