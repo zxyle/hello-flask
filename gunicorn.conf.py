@@ -22,7 +22,7 @@ reload = True
 pidfile = "/tmp/spider_server.pid"
 
 # logfile
-errorlog = "/tmp/spider_server.log"
+errorlog = "/tmp/spider_server.err"
 
 # the Access log file to write to.
 accesslog = "/tmp/spider_server.log"
