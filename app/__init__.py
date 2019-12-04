@@ -9,17 +9,18 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+from config import config
+
 db = SQLAlchemy()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-def create_app():
+def create_app(config_name):
     app = Flask(__name__)
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
-    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://root:1404133491zx@localhost:3306/fund?charset=utf8mb4"
-    app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
+
     db.init_app(app)
 
     from .oss import oss_blue

@@ -4,9 +4,11 @@
 # Date: 2019/11/29
 # Desc: 主程序
 
+import os
+
 from app import create_app
 
-app = create_app()
+app = create_app(os.getenv('FLASK_CONFIG', 'default'))
 
 
 @app.cli.command()
