@@ -10,8 +10,8 @@ from flask import jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
 from app.config import endpoint
-from app.oss import oss_blue
-from app.oss.sdk import OSS
+from . import oss_blue
+from .sdk import OSS
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
