@@ -10,4 +10,6 @@ from flask import Blueprint
 oss_blue = Blueprint('oss', __name__)
 
 
-from oss import transfer
+from . import views, errors
+
+

@@ -10,7 +10,7 @@ from itertools import islice
 
 import oss2
 
-from config import access_key_id, access_key_secret, endpoint
+from app.config import access_key_id, access_key_secret, endpoint
 
 
 class OSS:

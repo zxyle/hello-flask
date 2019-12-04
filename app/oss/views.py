@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
-# Date: 2019/12/3
+# Date: 2019/12/4
 # Desc: 
 
 from urllib.parse import urljoin
@@ -9,9 +9,9 @@ from urllib.parse import urljoin
 from flask import jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
-from config import endpoint
-from oss import oss_blue
-from oss.sdk import OSS
+from app.config import endpoint
+from app.oss import oss_blue
+from app.oss.sdk import OSS
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
