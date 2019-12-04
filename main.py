@@ -8,5 +8,13 @@ from app import create_app
 
 app = create_app()
 
+
+@app.cli.command()
+def test():
+    # set FLASK_APP=main.py
+    # flask test
+    print("hello")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
