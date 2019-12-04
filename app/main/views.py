@@ -4,8 +4,4 @@
 # Date: 2019/12/4
 # Desc: 
 
-from flask import Blueprint
-
-api_blue = Blueprint('api', __name__)
-
-from . import views
+from . import main_blue
