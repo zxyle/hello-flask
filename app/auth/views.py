@@ -6,7 +6,9 @@
 
 from flask import request
 
+from app import db
 from . import auth_blue
+from ..models import User
 
 
 @auth_blue.route('/login', methods=['GET', 'POST'])
@@ -24,7 +26,21 @@ def logout():
 
 @auth_blue.route('/register', methods=['GET', 'POST'])
 def register():
-    pass
+    content_type = request.content_type
+    form = None
+    if "json" in content_type:
+        form = request.get_json()
+    elif "x-www-form-urlencoded" in content_type:
+        form = request.form
+    elif "form-data" in content_type:
+        form = request.form
+
+    username = form.get("username")
+    password = form.get("password")
+    user = User(username=username, password=password)
+    db.session.add(user)
+    db.session.commit()
+    return "Welcome {}!".format(username)
 
 
 @auth_blue.route('/change-password', methods=['GET', 'POST'])
