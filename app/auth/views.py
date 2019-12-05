@@ -44,6 +44,10 @@ def register():
         form = request.form
 
     username = form.get("username")
+    user = User.query.filter_by(username=username).first()
+    if user:
+        return jsonify({"msg": "账号已存在."})
+
     password = form.get("password")
     password_hash = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
     user = User(username=username, password=password_hash)
