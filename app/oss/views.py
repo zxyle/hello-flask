@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from flask import jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
-from app.config import endpoint
+from app.config import ENDPOINT
 from . import oss_blue
 from .sdk import OSS
 
@@ -27,22 +27,21 @@ def transfer():
         return render_template("transfer.html")
 
     if 'file' not in request.files:
-        return 'No file part'
+        return jsonify({"msg": "No file part."})
 
     file = request.files['file']
     bucket_name = request.form.get("bucket_name")
     # if user does not select file, browser also
     # submit an empty part without filename
     if file.filename == '':
-        return 'No selected file'
+        return jsonify({"msg": "No selected file."})
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        # 直接上传bytes，而不需保存到本地再上传
-        # file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        # file.save(file_path)
         o = OSS()
         status = o.put(filename, file.stream.read(), bucket_name=bucket_name)
-        bucket_domain = f"https://{bucket_name}.{endpoint}"
+        bucket_domain = f"https://{bucket_name}.{ENDPOINT}"
         url = urljoin(bucket_domain, filename)
         return jsonify({"status": status, "url": url})
+
+    return jsonify({"msg": "file error."})
