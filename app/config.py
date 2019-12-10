@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Author: Zheng <me@BoardCAM.org>
+# Author: Zheng <zxyful@gmail.com>
 # Date: 2019/7/22
 # Desc: 
 
