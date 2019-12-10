@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Author: Zheng <zhengxiang@upg.cn>
-"""gunicorn 配置文件"""
-# 使用以下命令执行
+# Author: Zheng <zxyful@gmail.com>
+# Desc: Gunicorn configuration file
 # gunicorn -c gunicorn.conf.py main:app
-# 详细配置参数请参考以下url
-# http://docs.gunicorn.org/en/latest/settings.html
+# For more detail: http://docs.gunicorn.org/en/latest/settings.html
 
 import multiprocessing
 
