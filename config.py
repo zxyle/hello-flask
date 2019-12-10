@@ -4,6 +4,8 @@
 # Date: 2019/12/4
 # Desc:
 
+import os
+
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -16,6 +18,11 @@ class Config:
 
 class TestingConfig(Config):
     DEBUG = True
+    LOG_TYPE = os.environ.get("LOG_TYPE", "watched")
+    LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
+    LOG_DIR = "./data/logs"
+    APP_LOG_NAME = "app.log"
+    WWW_LOG_NAME = "www.log"
     SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://root:1404133491zx@localhost:3306/fund?charset=utf8mb4"
 
 

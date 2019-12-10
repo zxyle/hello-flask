@@ -10,6 +10,9 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 from config import config
+from app.flask_logs import LogSetup
+
+logs = LogSetup()
 
 db = SQLAlchemy()
 
@@ -22,6 +25,7 @@ def create_app(config_name):
     config[config_name].init_app(app)
 
     db.init_app(app)
+    logs.init_app(app)
 
     from .oss import oss_blue
     app.register_blueprint(oss_blue, url_prefix='/oss')
