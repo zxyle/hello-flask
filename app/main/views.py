@@ -5,3 +5,8 @@
 # Desc: 
 
 from . import main_blue
+
+
+@main_blue.route('/')
+def index():
+    return "Page is empty"
