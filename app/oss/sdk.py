@@ -10,19 +10,19 @@ from itertools import islice
 
 import oss2
 
-from app.config import access_key_id, access_key_secret, endpoint
+from app.config import ACCESS_KEY_ID, ACCESS_KEY_SECRET, ENDPOINT
 
 
 class OSS:
     def __init__(self):
-        self.__access_key_id = access_key_id
-        self.__access_key_secret = access_key_secret
-        self.__endpoint = endpoint
+        self.__access_key_id = ACCESS_KEY_ID
+        self.__access_key_secret = ACCESS_KEY_SECRET
+        self.__endpoint = ENDPOINT
         self.__auth = oss2.Auth(self.__access_key_id, self.__access_key_secret)
 
     def get_bucket(self, bucket_name):
         """
-        得到一个bucket对象
+        Get an authenticated bucket object
         :param bucket_name:
         :return:
         """
@@ -34,8 +34,8 @@ class OSS:
     def put(self, filename, bytes_data, bucket_name="zx-test-oss"):
         """
         upload file
-        :param filename: 文件名
-        :param bytes_data: 二进制文件
+        :param filename:
+        :param bytes_data:
         :param bucket_name:
         :return:
         """
@@ -53,7 +53,7 @@ class OSS:
 
     def list_objects(self, bucket_name="zx-test-oss"):
         """
-        列出bucket所有文件名
+        List all filenames in  this bucket
         :param bucket_name:
         :return:
         """
@@ -63,19 +63,8 @@ class OSS:
 
     def delete(self, obj_name, bucket_name="zx-test-oss"):
         bucket = self.get_bucket(bucket_name)
-        result = bucket.delete_object(obj_name)
-        print(result.delete_marker)
-        print(result.headers)
-        print(result.request_id)
-        print(result.resp)
-        print(result.status)
-        print(result.versionid)
+        return bucket.delete_object(obj_name)
 
     @staticmethod
     def _exist(pathname):
         return os.path.exists(pathname)
-
-
-if __name__ == '__main__':
-    o = OSS()
-    print(o.put("bd_logo1.png", open("./bd_logo1.png", 'rb'), "zx-hotel"))
