@@ -1,6 +1,6 @@
 version: '3'
 services:
-  server:
+  web:
     build: .
     ports:
       - "8000:5000"
@@ -9,3 +9,17 @@ services:
       FLASK_ENV: production
     restart: always
     command: gunicorn -c gunicorn.conf.py main:app
+    volumes:
+      - staticfile:/app/app/static
+
+  nginx:
+    build: ./nginx
+    ports:
+    - "7777:80"
+    links:
+      - web
+    volumes:
+      - staticfile:/staticfile
+
+volumes:
+  staticfile:
