@@ -15,10 +15,12 @@ from app.config import ACCESS_KEY_ID, ACCESS_KEY_SECRET, ENDPOINT
 
 class OSS:
     def __init__(self):
-        self.__access_key_id = ACCESS_KEY_ID
-        self.__access_key_secret = ACCESS_KEY_SECRET
-        self.__endpoint = ENDPOINT
-        self.__auth = oss2.Auth(self.__access_key_id, self.__access_key_secret)
+        self.access_key_id = ACCESS_KEY_ID
+        self.access_key_secret = ACCESS_KEY_SECRET
+        self.endpoint = ENDPOINT
+
+    def auth(self):
+        return oss2.Auth(self.access_key_id, self.access_key_secret)
 
     def get_bucket(self, bucket_name):
         """
@@ -29,7 +31,8 @@ class OSS:
         if not bucket_name:
             raise ValueError("bucket not null.")
 
-        return oss2.Bucket(self.__auth, self.__endpoint, bucket_name)
+        auth = self.auth()
+        return oss2.Bucket(auth, self.endpoint, bucket_name)
 
     def put(self, filename, bytes_data, bucket_name="zx-test-oss"):
         """
