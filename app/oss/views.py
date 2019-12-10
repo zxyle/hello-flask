@@ -6,7 +6,7 @@
 
 from urllib.parse import urljoin
 
-from flask import jsonify, render_template, request
+from flask import render_template, request
 from werkzeug.utils import secure_filename
 
 from app.config import ENDPOINT
@@ -27,14 +27,14 @@ def transfer():
         return render_template("transfer.html")
 
     if 'file' not in request.files:
-        return jsonify({"msg": "No file part."})
+        return {"msg": "No file part."}
 
     file = request.files['file']
     bucket_name = request.form.get("bucket_name")
     # if user does not select file, browser also
     # submit an empty part without filename
     if file.filename == '':
-        return jsonify({"msg": "No selected file."})
+        return {"msg": "No selected file."}
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -42,6 +42,6 @@ def transfer():
         status = o.put(filename, file.stream.read(), bucket_name=bucket_name)
         bucket_domain = f"https://{bucket_name}.{ENDPOINT}"
         url = urljoin(bucket_domain, filename)
-        return jsonify({"status": status, "url": url})
+        return {"status": status, "url": url}
 
-    return jsonify({"msg": "file error."})
+    return {"msg": "file error."}

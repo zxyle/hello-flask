@@ -4,7 +4,7 @@
 # Date: 2019/12/4
 # Desc: 
 
-from flask import jsonify, request
+from flask import request
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
@@ -17,14 +17,14 @@ def login():
     username = request.form.get("username")
     user = User.query.filter_by(username=username).first()
     if not user:
-        return jsonify({"msg": "未注册."})
+        return {"msg": "unregistered."}
     password_hash = user.password
     password = request.form.get("password")
 
     if not check_password_hash(password_hash, password):
-        return jsonify({"msg": "账号或密码错误."})
+        return {"msg": "Incorrect username or password."}
 
-    return jsonify({"msg": "Welcome back {}!".format(username)})
+    return {"msg": "Welcome back {}!".format(username)}
 
 
 @auth_blue.route('/logout', methods=['GET', 'POST'])
@@ -46,14 +46,14 @@ def register():
     username = form.get("username")
     user = User.query.filter_by(username=username).first()
     if user:
-        return jsonify({"msg": "账号已存在."})
+        return {"msg": "Account name already exists."}
 
     password = form.get("password")
     password_hash = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
     user = User(username=username, password=password_hash)
     db.session.add(user)
     db.session.commit()
-    return jsonify({"msg": "Welcome {}!".format(username)})
+    return {"msg": "Welcome {}!".format(username)}
 
 
 @auth_blue.route('/change-password', methods=['GET', 'POST'])
@@ -63,15 +63,15 @@ def change_password():
     new_password = request.form.get("new_password")
     user = User.query.filter_by(username=username).first()
     if not user:
-        return jsonify({"msg": "未注册"})
+        return {"msg": "unregistered."}
     password_hash = user.password
     status = check_password_hash(password_hash, old_password)
     if not status:
-        return jsonify({"msg": "旧密码错误"})
+        return {"msg": "Old password is wrong"}
 
     password_hash = generate_password_hash(new_password, method="pbkdf2:sha256", salt_length=8)
     user.password = password_hash
     db.session.add(user)
     db.session.commit()
 
-    return jsonify({"msg": "change password success."})
+    return {"msg": "change password success."}
