@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>转存图片</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+    Api - transfer pictures to oss
+{% endblock %}
+
+{% block body %}
 <form action="{{ url_for('oss.transfer') }}" method="post" enctype='multipart/form-data'>
     <input type="file" name="file"><br>
-    <input type="text" placeholder="bucket name" name="bucket_name" value="zx-hotel"><br>
+    <label>
+        <input type="text" placeholder="bucket name" name="bucket_name" value="zx-hotel">
+    </label><br>
     <input type="submit"><br>
 </form>
-
-</body>
-</html>
+{% endblock %}
