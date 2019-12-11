@@ -12,3 +12,11 @@ docker-compose安装和文档 请参考docker官方文档
 ```
 docker-compose up -d --build
 ```
+
+## 关闭服务
+```
+docker-compose down -v --rmi all
+```
+
+* -v  删除volumn
+* --rmi 删除镜像
