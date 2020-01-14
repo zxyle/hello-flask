@@ -18,5 +18,5 @@ docker-compose up -d --build
 docker-compose down -v --rmi all
 ```
 
-* -v  删除volumn
+* -v  删除volume
 * --rmi 删除镜像
