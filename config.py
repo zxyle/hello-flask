@@ -23,7 +23,7 @@ class TestingConfig(Config):
     LOG_DIR = "./data/logs"
     APP_LOG_NAME = "app.log"
     WWW_LOG_NAME = "www.log"
-    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://root:1404133491zx@localhost:3306/fund?charset=utf8mb4"
+    SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://zheng:VJtgG2AsIOw4Yklg@mysql:3306/fund?charset=utf8mb4"
 
 
 config = {
