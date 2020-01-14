@@ -45,7 +45,8 @@ services:
     env_file:
       - .env
     volumes:
-    - ./data/redis_data/:/data/
+      - ./data/redis_data/:/data/redis
+      - ./data/db_data:/data/db_data
 
 volumes:
   staticfile:
