@@ -7,6 +7,7 @@ services:
       FLASK_ENV: production
     restart: always
     command: gunicorn -c gunicorn.conf.py main:app
+    # command: uwsgi --ini uwsgi.ini
     volumes:
       - staticfile:/app/app/static
     depends_on:
@@ -40,13 +41,13 @@ services:
       MYSQL_USER: zheng
       MYSQL_PASSWORD: VJtgG2AsIOw4Yklg
 
-  backup:
-    image: backup:latest
-    env_file:
-      - .env
-    volumes:
-      - ./data/redis_data/:/data/redis
-      - ./data/db_data:/data/db_data
+#  backup:
+#    image: backup:latest
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./data/redis_data/:/data/redis
+#      - ./data/db_data:/data/db_data
 
 volumes:
   staticfile:
