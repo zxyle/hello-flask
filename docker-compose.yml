@@ -40,5 +40,12 @@ services:
       MYSQL_USER: zheng
       MYSQL_PASSWORD: VJtgG2AsIOw4Yklg
 
+  backup:
+    image: backup:latest
+    env_file:
+      - .env
+    volumes:
+    - ./data/redis_data/:/data/
+
 volumes:
   staticfile:
