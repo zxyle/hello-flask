@@ -24,20 +24,20 @@ services:
   redis:
     image: redis
     restart: always
+    command: --appendonly yes
     volumes:
-       - redis.conf:/usr/local/etc/redis/redis.conf
-      - ./redis_data/:/data/
+     - ./data/redis_data/:/data/
 
-  db:
-    image: mysql:5.7
-    volumes:
-      - db_data:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+#  db:
+#    image: mysql:5.7
+#    volumes:
+#      - db_data:/var/lib/mysql
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: somewordpress
+#      MYSQL_DATABASE: wordpress
+#      MYSQL_USER: wordpress
+#      MYSQL_PASSWORD: wordpress
 
 volumes:
   staticfile:

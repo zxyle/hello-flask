@@ -3,3 +3,4 @@ oss2==2.7.0
 gunicorn==19.9.0
 mysql-connector-python==8.0.18
 flask-sqlalchemy==2.4.1
+redis==3.3.11
