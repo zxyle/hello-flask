@@ -9,7 +9,7 @@ from mysql.connector import Error, MySQLConnection
 PROD_DB_CONFIG = {
     "user": "zheng",
     "password": "VJtgG2AsIOw4Yklg",
-    "host": "db",
+    "host": "mysql",
     "port": 3306,
     "database": "spider",
     # 'charset': 'utf8',
