@@ -11,6 +11,7 @@ services:
       - staticfile:/app/app/static
     depends_on:
       - redis
+      - db
 
   nginx:
     build: ./nginx
@@ -28,16 +29,16 @@ services:
     volumes:
      - ./data/redis_data/:/data/
 
-#  db:
-#    image: mysql:5.7
-#    volumes:
-#      - db_data:/var/lib/mysql
-#    restart: always
-#    environment:
-#      MYSQL_ROOT_PASSWORD: somewordpress
-#      MYSQL_DATABASE: wordpress
-#      MYSQL_USER: wordpress
-#      MYSQL_PASSWORD: wordpress
+  db:
+    image: mysql:5.7
+    volumes:
+      - ./data/db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: HitI2TfFbrO2tcLZ
+      MYSQL_DATABASE: spider
+      MYSQL_USER: zheng
+      MYSQL_PASSWORD: VJtgG2AsIOw4Yklg
 
 volumes:
   staticfile:
