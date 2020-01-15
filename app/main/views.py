@@ -15,3 +15,8 @@ logger = logging.getLogger("app.access")
 def index():
     logger.info('logged in successfully')
     return "Page is empty"
+
+
+@main_blue.route('/ping')
+def ping():
+    return "pong"
