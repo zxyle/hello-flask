@@ -2,7 +2,7 @@ FROM python:3.7.6
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY requirements.txt ./
 
 COPY ./pip.conf /etc/pip.conf
 

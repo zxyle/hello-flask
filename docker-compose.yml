@@ -8,6 +8,7 @@ services:
     restart: always
     command: gunicorn -c gunicorn.conf.py main:app
     volumes:
+      - .:/usr/src/app
       - staticfile:/app/app/static
     depends_on:
       - redis
