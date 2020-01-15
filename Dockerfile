@@ -1,8 +1,8 @@
-FROM python:3.7.4
+FROM python:3.7.6
 
-ADD . /app/
+WORKDIR /usr/src/app
 
-WORKDIR /app/
+COPY . .
 
 COPY ./pip.conf /etc/pip.conf
 
@@ -12,4 +12,4 @@ ENV TZ=Asia/Shanghai \
 RUN pip install --no-cache-dir --upgrade pip \
      && pip install --no-cache-dir -r requirements.txt
 
-RUN  mkdir -p /app/data/logs
+RUN  mkdir -p /usr/src/app/data/logs
