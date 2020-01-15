@@ -7,6 +7,7 @@
 
 import multiprocessing
 
+# nginx default.conf 第21行配置 与此相连
 bind = "0.0.0.0:5000"
 workers = multiprocessing.cpu_count() * 2 + 1
 
