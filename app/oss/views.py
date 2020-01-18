@@ -4,14 +4,16 @@
 # Date: 2019/12/4
 # Desc: 
 
+import os
 from urllib.parse import urljoin
 
 from flask import render_template, request
 from werkzeug.utils import secure_filename
 
-from app.config import ENDPOINT
 from . import oss_blue
 from .sdk import OSS
+
+ENDPOINT = os.getenv("ENDPOINT")
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 

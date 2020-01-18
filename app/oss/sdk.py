@@ -10,7 +10,9 @@ from itertools import islice
 
 import oss2
 
-from app.config import ACCESS_KEY_ID, ACCESS_KEY_SECRET, ENDPOINT
+ACCESS_KEY_ID = os.getenv("ACCESS_KEY_ID")
+ACCESS_KEY_SECRET = os.getenv("ACCESS_KEY_SECRET")
+ENDPOINT = os.getenv("ENDPOINT")
 
 
 class OSS:
