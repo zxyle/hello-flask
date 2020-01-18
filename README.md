@@ -8,6 +8,11 @@ flask web application
 docker-compose up -d --build
 ```
 
+## Restart 
+```
+docker-compose restart
+```
+
 ## Shutdown
 ```
 docker-compose down -v --rmi all
