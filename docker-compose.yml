@@ -12,6 +12,7 @@ services:
     volumes:
       - .:/usr/src/app
       - staticfile:/app/app/static
+      - ./data/uploads:/uploads
     depends_on:
       - redis
       - mysql
