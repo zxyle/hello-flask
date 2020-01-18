@@ -11,7 +11,6 @@ services:
       - .env
     volumes:
       - .:/usr/src/app
-      - staticfile:/app/app/static
       - ./data/uploads:/uploads
     depends_on:
       - redis
@@ -32,7 +31,7 @@ services:
     links:
       - web
     volumes:
-      - staticfile:/staticfile
+      - ./app/static:/staticfile
 
   redis:
     image: redis:4.0
@@ -68,6 +67,3 @@ services:
 #      - 8080:5000
 #    volumes:
 #      - /var/run/docker.sock:/var/run/docker.sock
-
-volumes:
-  staticfile:
