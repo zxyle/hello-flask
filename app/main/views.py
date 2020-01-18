@@ -5,8 +5,13 @@
 # Desc:
 
 import logging
+import socket
+
+from redis import Redis
 
 from . import main_blue
+
+redis = Redis(host="redis")
 
 logger = logging.getLogger("app.access")
 
@@ -20,3 +25,10 @@ def index():
 @main_blue.route('/ping')
 def ping():
     return "pong"
+
+
+@main_blue.route('/redis')
+def hello():
+    redis.incr('hits')
+    return 'Hello Container World! I have been seen %s times and my hostname is %s.\n' % (
+        redis.get('hits'), socket.gethostname())
