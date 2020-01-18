@@ -58,5 +58,14 @@ services:
 #      - ./data/redis_data/:/data/redis
 #      - ./data/db_data:/data/db_data
 
+#  lb:
+#    image: dockercloud/haproxy
+#    links:
+#      - web
+#    ports:
+#      - 8080:5000
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+
 volumes:
   staticfile:
