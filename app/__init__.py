@@ -31,7 +31,7 @@ def create_app(config_name):
     app.register_blueprint(oss_blue, url_prefix='/oss')
 
     from .auth import auth_blue
-    app.register_blueprint(auth_blue)
+    app.register_blueprint(auth_blue, url_prefix='/user')
 
     from .main import main_blue
     app.register_blueprint(main_blue)

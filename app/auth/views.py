@@ -75,3 +75,8 @@ def change_password():
     db.session.commit()
 
     return {"msg": "change password success."}
+
+
+@auth_blue.route('/delete', methods=['GET', 'POST'])
+def del_user():
+    return "not support."
