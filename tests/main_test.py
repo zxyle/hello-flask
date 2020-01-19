@@ -10,7 +10,5 @@ def test_index():
     main.app.testing = True
     client = main.app.test_client()
 
-    filename = r"D:\demo.png"
-    r = client.post('/oss/transfer', data={"bucket_name": "zx-hotel", 'file': open(filename, 'rb')})
-    print(r.get_json())
+    r = client.get('/ping')
     assert r.status_code == 200
