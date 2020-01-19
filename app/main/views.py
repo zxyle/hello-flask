@@ -11,6 +11,8 @@ import socket
 from flask import request, render_template, jsonify
 from redis import Redis
 
+from app import db
+from app.models import User
 from . import main_blue
 
 redis = Redis(host="redis")
@@ -72,3 +74,23 @@ def transfer():
         return {"status": 1}
 
     return {"msg": "file error."}
+
+
+@main_blue.route('/query_user')
+def query_user():
+    username = request.args.get("username")
+    u = User.query.filter_by(username=username).first()
+    if not u:
+        return "User does not exist."
+    password = u.password
+    return f"{username}: {password}."
+
+
+@main_blue.route('/add_user')
+def add_user():
+    username = request.args.get("username")
+    password = request.args.get("password")
+    u = User(username, password)
+    db.session.add(u)
+    db.session.commit()
+    return f"Add {username} success."
