@@ -41,10 +41,15 @@ services:
       - ./data/redis_data/:/data/
 
   mysql:
-    image: mysql:5.7
+    image: mysql:8.0.19
     volumes:
       - ./data/db_data:/var/lib/mysql
     restart: always
+    ports:
+      - 3307:3306
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
     environment:
       MYSQL_ROOT_PASSWORD: HitI2TfFbrO2tcLZ
       MYSQL_DATABASE: spider

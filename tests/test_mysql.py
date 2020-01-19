@@ -28,6 +28,7 @@ def connect_db():
         result = cursor.fetchall()
         print(result)
     except Error as e:
+        print(e)
         return False
     else:
         return True
