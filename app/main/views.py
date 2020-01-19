@@ -11,8 +11,6 @@ import socket
 from flask import request, render_template, jsonify
 from redis import Redis
 
-from app import db
-from app.models import User
 from . import main_blue
 
 redis = Redis(host="redis")
@@ -24,8 +22,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', "xlsx", "xls", 
 
 @main_blue.route('/')
 def index():
-    logger.info('logged in successfully')
-    return "Page is empty"
+    return "It worked!"
 
 
 @main_blue.route('/ping')
