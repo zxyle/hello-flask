@@ -4,11 +4,22 @@
 # Date: 2019/12/4
 # Desc:
 
+from sqlalchemy.sql import func
+
 from . import db
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class BaseModel(db.Model):
+    __abstract__ = True
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, comment='comment')
+    create_time = db.Column(db.TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
+    modify_time = db.Column(db.TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
+
+
+class User(BaseModel):
+    __tablename__ = 'user'
+
     username = db.Column(db.String(80), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
 
