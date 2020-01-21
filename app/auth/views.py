@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author: Zheng <zxyful@gmail.com>
 # Date: 2019/12/4
-# Desc: 
+# Desc: User authentication view functions
 
 from flask import request
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -18,13 +18,13 @@ def login():
     user = User.query.filter_by(username=username).first()
     if not user:
         return {"msg": "unregistered."}
-    password_hash = user.password
-    password = request.form.get("password")
+    hashed_password = user.password
+    raw_password = request.form.get("password")
 
-    if not check_password_hash(password_hash, password):
+    if not check_password_hash(hashed_password, raw_password):
         return {"msg": "Incorrect username or password."}
 
-    return {"msg": "Welcome back {}!".format(username)}
+    return {"msg": f"Welcome back {username}!"}
 
 
 @auth_blue.route('/logout', methods=['GET', 'POST'])
@@ -48,12 +48,12 @@ def register():
     if user:
         return {"msg": "Account name already exists."}
 
-    password = form.get("password")
-    password_hash = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
-    user = User(username=username, password=password_hash)
+    raw_password = form.get("password")
+    hashed_password = generate_password_hash(raw_password, method="pbkdf2:sha256", salt_length=8)
+    user = User(username=username, password=hashed_password)
     db.session.add(user)
     db.session.commit()
-    return {"msg": "Welcome {}!".format(username)}
+    return {"msg": f"Welcome {username}!"}
 
 
 @auth_blue.route('/change-password', methods=['GET', 'POST'])
@@ -64,13 +64,13 @@ def change_password():
     user = User.query.filter_by(username=username).first()
     if not user:
         return {"msg": "unregistered."}
-    password_hash = user.password
-    status = check_password_hash(password_hash, old_password)
-    if not status:
-        return {"msg": "Old password is wrong"}
+    hashed_password = user.password
+    is_right = check_password_hash(hashed_password, old_password)
+    if not is_right:
+        return {"msg": "Old password is wrong."}
 
-    password_hash = generate_password_hash(new_password, method="pbkdf2:sha256", salt_length=8)
-    user.password = password_hash
+    new_hashed_password = generate_password_hash(new_password, method="pbkdf2:sha256", salt_length=8)
+    user.password = new_hashed_password
     db.session.add(user)
     db.session.commit()
 
