@@ -8,6 +8,11 @@ flask web application
 docker-compose up -d --build
 ```
 
+## Browse
+```
+curl http://127.0.0.1/
+```
+
 ## Restart 
 ```
 docker-compose restart
@@ -17,3 +22,6 @@ docker-compose restart
 ```
 docker-compose down -v --rmi all
 ```
+
+## License
+MIT
