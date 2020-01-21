@@ -12,7 +12,7 @@ from . import auth_blue
 from ..models import User
 
 
-@auth_blue.route('/login', methods=['GET', 'POST'])
+@auth_blue.route('/login', methods=['POST'])
 def login():
     username = request.form.get("username")
     user = User.query.filter_by(username=username).first()
@@ -27,12 +27,12 @@ def login():
     return {"msg": f"Welcome back {username}!"}
 
 
-@auth_blue.route('/logout', methods=['GET', 'POST'])
+@auth_blue.route('/logout', methods=['GET'])
 def logout():
     pass
 
 
-@auth_blue.route('/register', methods=['GET', 'POST'])
+@auth_blue.route('/register', methods=['POST'])
 def register():
     content_type = request.content_type
     form = None
@@ -56,7 +56,7 @@ def register():
     return {"msg": f"Welcome {username}!"}
 
 
-@auth_blue.route('/change-password', methods=['GET', 'POST'])
+@auth_blue.route('/change-password', methods=['POST'])
 def change_password():
     username = request.form.get("username")
     old_password = request.form.get("old_password")
@@ -77,6 +77,6 @@ def change_password():
     return {"msg": "change password success."}
 
 
-@auth_blue.route('/delete', methods=['GET', 'POST'])
+@auth_blue.route('/delete', methods=['POST'])
 def del_user():
     return "not support."
