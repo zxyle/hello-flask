@@ -1,24 +1,26 @@
 # flask server
 
 ## Intro
-flask web application
+flask web application template.
 
-## Deploy
+## Quick Start
+
+### Run
 ```
 docker-compose up -d --build
 ```
 
-## Browse
+### Browse
 ```
 curl http://127.0.0.1/
 ```
 
-## Restart 
+### Restart
 ```
 docker-compose restart
 ```
 
-## Shutdown
+### Shutdown
 ```
 docker-compose down -v --rmi all
 ```
