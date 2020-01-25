@@ -4,6 +4,8 @@
 flask web application template.
 
 ## Quick Start
+Compose is a tool for defining and running multi-container Docker applications.
+Here is its [documentation](https://docs.docker.com/compose/)
 
 ### Run
 ```
@@ -12,7 +14,7 @@ docker-compose up -d --build
 
 ### Browse
 ```
-curl http://127.0.0.1/
+curl http://127.0.0.1/ping
 ```
 
 ### Restart
@@ -20,7 +22,7 @@ curl http://127.0.0.1/
 docker-compose restart
 ```
 
-### Shutdown
+### Shutdown & Remove
 ```
 docker-compose down -v --rmi all
 ```
