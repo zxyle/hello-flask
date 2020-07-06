@@ -1,4 +1,4 @@
-# flask server
+# Hello Flask
 
 ## Intro
 flask web application template.
