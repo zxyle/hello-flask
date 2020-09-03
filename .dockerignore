@@ -11,3 +11,4 @@ tests
 
 nginx
 docker-compose.yml
+data
