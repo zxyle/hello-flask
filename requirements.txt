@@ -1,6 +1,6 @@
 flask==1.1.1
-oss2==2.7.0
-gunicorn==19.9.0
-mysql-connector-python==8.0.18
+oss2==2.12.1
+gunicorn==20.0.4
+mysql-connector-python==8.0.21
 flask-sqlalchemy==2.4.1
-redis==3.3.11
+redis==3.5.3
