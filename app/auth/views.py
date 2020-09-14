@@ -9,7 +9,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from app import db
 from . import auth_blue
-from ..models import User
+from .model import User
 
 
 @auth_blue.route('/login', methods=['POST'])
