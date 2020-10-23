@@ -27,7 +27,7 @@ def index():
 
 @main_blue.route('/ping')
 def ping():
-    return "pong"
+    return jsonify({"ping": "pong"})
 
 
 @main_blue.route('/redis')
@@ -48,7 +48,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@main_blue.route('/upload', methods=['POST'])
+@main_blue.route('/upload', methods=['GET', 'POST'])
 def transfer():
     if request.method != 'POST':
         return render_template("transfer.html")
